@@ -1,10 +1,10 @@
-import tkinter as tk  # Tkinter Kütüphanesini ice aktariyoruz
+import tkinter as tk  # Import the Tkinter library
 
-# Pencere oluşturma
+# Create a window
 root = tk.Tk()
-root.title("Calculator")  # Pencere başlığı
-root.geometry("400x600")  # pencere boyutu
-root.resizable(False, False)  # Pencereyi büyütüp kücültme kapali
+root.title("Calculator")  # Window title
+root.geometry("400x600")  # Window size
+root.resizable(False, False)  # Disable resizing
 
 
 # -- Entry (Calculator Display) --
@@ -14,9 +14,9 @@ entry = tk.Entry(
     font=("Arial", 18),
     bd=5,
     relief="ridge",
-    justify="right"  # yazilar saga hizali olacak
+    justify="right"  # Text will be right-aligned
 )
-entry.pack(pady=10)  # ekrana ekliyoruz, biraz yukaridan bosluk biraktik
+entry.pack(pady=10)  # Add to the screen with some vertical padding
 
 # -- Button (Calculator Buttons) --
 button_frame = tk.Frame(root)
@@ -39,64 +39,65 @@ for (text, row, col) in buttons:
 
 
 def button_click(char):
-    current = entry.get()  # ekrandaki mevcut yaziyi al
-    entry.delete(0, tk.END)  # ekrani temizle
-    entry.insert(0, current + char)  # eski yazinin üstüne yeni karakter ekle
+    current = entry.get()  # Get current text from the display
+    entry.delete(0, tk.END)  # Clear the display
+    entry.insert(0, current + char)  # Add new character to the existing text
 
 
 def calculate():
     try:
-        # eval fonksiyonu ile matematiksel ifadeyi hesapla
+        # Calculate the mathematical expression using eval
         result = eval(entry.get())
-        entry.delete(0, tk.END)  # ekrani temizle
-        entry.insert(0, str(result))  # sonucu ekrana yaz
+        entry.delete(0, tk.END)  # Clear the display
+        entry.insert(0, str(result))  # Show the result
     except Exception as e:
         entry.delete(0, tk.END)
-        entry.insert(0, "Error")  # hata durumunda ekrana "Error" yaz
+        entry.insert(0, "Error")  # Show "Error" if calculation fails
 
 
 for (text, row, col) in buttons:
     if text == "=":
         btn = tk.Button(
             button_frame, text=text, width=5, height=2, font=("Arial", 14),
-            # "=" butonuna tiklandiginda calculate fonksiyonu cagrilir
+            # "=" button calls calculate function
             command=calculate
         )
-    else:  # diger butonlar normal calisiyor
+    else:  # Other buttons
         btn = tk.Button(
             button_frame, text=text, width=5, height=2, font=("Arial", 14),
-            # her butona tiklandiginda button_click fonksiyonu cagrilir
+            # Calls button_click function when clicked
             command=lambda t=text: button_click(t)
         )
     btn.grid(row=row, column=col, padx=5, pady=5)
 
+# Clear button
 clear_btn = tk.Button(root, text="C", width=20, height=2, font=("Arial", 14),
-                      # "C" butonuna tiklandiginda ekrani temizle
+                      # Clears the display when clicked
                       command=lambda: entry.delete(0, tk.END))
-clear_btn.pack(pady=10)  # ekrana ekle
+clear_btn.pack(pady=10)  # Add to the screen
 
 
 def key_press(event):
-    char = event.keysym  # basilan tusun karakterini al
+    char = event.keysym  # Get the pressed key
 
     if char in "0123456789":
-        button_click(char)  # sayiyi yaz
+        button_click(char)  # Type the number
     elif char in ("plus", "minus", "asterisk", "slash", "period"):
         mapping = {"plus": "+", "minus": "-",
                    "asterisk": "*", "slash": "/", "period": "."}
-        button_click(mapping[char])  # isaretleri yaz
+        button_click(mapping[char])  # Type the operator
     elif char == "Return":
-        calculate()  # Enter tusuna basildiginda hesapla
-    elif char == "BackSpace":  # geri silme tusu
+        calculate()  # Press Enter to calculate
+    elif char == "BackSpace":  # Delete key
         current = entry.get()
         entry.delete(0, tk.END)
-        entry.insert(0, current[:-1])  # son karakteri sil
-    elif char == "Escape":  # temizle
-        entry.delete(0, tk.END)  # ekrani temizle
+        entry.insert(0, current[:-1])  # Remove last character
+    elif char == "Escape":  # Clear key
+        entry.delete(0, tk.END)  # Clear the display
 
 
-root.bind("<Key>", key_press)  # klavye tuslarina bagla
+root.bind("<Key>", key_press)  # Bind keyboard keys
 
 
-# uygulama Sürekli calissin diye mainloop
+# Keep the application running
 root.mainloop()
