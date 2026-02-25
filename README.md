@@ -1,11 +1,11 @@
-# 🧮 Calculator
+#  Calculator
 
 A simple and user-friendly **desktop calculator application** built with **Python** and **Tkinter**.
 This project focuses on basic arithmetic operations, keyboard support, and clean, readable code.
 
 ---
 
-## ✨ Features
+##  Features
 
 * Basic arithmetic operations (+, −, ×, ÷)
 * Decimal number support
@@ -16,14 +16,14 @@ This project focuses on basic arithmetic operations, keyboard support, and clean
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 * **Python 3**
 * **Tkinter** – standard Python GUI library
 
 ---
 
-## 📦 Installation
+##  Installation
 
 Clone the repository:
 
@@ -40,7 +40,7 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Usage
+##  Usage
 
 Run the application:
 
@@ -53,7 +53,7 @@ Press **Enter** to calculate, **Backspace** to delete, and **Escape** to clear.
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```text
 calculator/
@@ -65,7 +65,7 @@ calculator/
 
 ---
 
-## 📸 Video
+##  Video
 
 ![2026-01-1110-30-51-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/d83bab76-17ca-4fae-a311-18ef3855e2c3)
 
@@ -73,7 +73,7 @@ calculator/
 ---
 
 
-## 🚀 Possible Improvements
+##  Possible Improvements
 
 * Advanced operations (%, √, power)
 * Calculation history
@@ -83,6 +83,6 @@ calculator/
 
 ---
 
-## 📄 License
+##  License
 
 This project is intended for **educational and personal use**.
